@@ -17,7 +17,6 @@ Feature: Verify cart in Gettop
       When User clicks on cart icon
       Then Your cart is currently empty. is displayed
 
-
   Scenario: Hovering on Cart icon shows No products in the cart if no products were added
     Given Open Gettop store
     When User hovers cart icon
