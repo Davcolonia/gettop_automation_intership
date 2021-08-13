@@ -21,30 +21,30 @@ Feature: Verify cart in Gettop
   Scenario: Hovering on Cart icon shows No products in the cart if no products were added
     Given Open Gettop store
     When User hovers cart icon
-    Then No products in the cart is shown
+    Then No products in the cart. is shown
 
-  Scenario: Add product to cart, verify that price in top nav menu is correct
+  Scenario: Add product to cart, verify that price, subtotal, quantity, and product in top nav menu is correct
     Given Go to product ipad
     When Click on the Add to cart button in bottom
     Then Verify price $329.00 in the nav menu
     And Verify 1 item in the nav menu
-    And Verify dropdown price $329.00
-    And Verify expected product
+    And Verify subtotal price $329.00
+    And Verify expected product iPad
 
    Scenario: After adding items, verify user can click on "View Cart" and is taken to cart page
     Given Go to product ipad
     When Click on the Add to cart button in bottom
      And click on view cart
-     Then Verify items in cart page
+     Then Verify iPad in cart page
 
 Scenario: After adding items, verify user can click on "Checkout" and is taken to checkout
     Given Go to product ipad
     When Click on the Add to cart button in bottom
      And click on checkout
-     Then Verify checkout page
+     Then Verify checkout page has YOUR ORDER
 
   Scenario: After adding items, verify user can remove items
     Given Go to product ipad
     When Click on the Add to cart button in bottom
      And click on remove items
-     Then Verify no items
+     Then Verify no items by No products in the cart. message

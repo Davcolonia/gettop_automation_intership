@@ -10,9 +10,11 @@ class Header(Page):
     # SEARCH_ICON = (By.ID, 'nav-orders')
     # SEARCH_ICON = (By.ID, 'nav-cart')
     CART = (By.ID, 'nav_cart_count')
+    CART_ICON = (By.XPATH, "//span[@class='cart-icon image-icon']")
     FLAG = (By.CSS_SELECTOR, 'icp-nav-flag.icp-nav-flag-us')
     SPANISH_LANG = (By.CSS_SELECTOR, "a[href='#switch-lang=es_US']")
     DEPARTMENT_SELECT = (By.ID, 'searchDropdownBox')
+
 
     def input_search_word(self, search_word):
         self.input_text(search_word, *self.SEARCH_FIELD)
@@ -22,6 +24,12 @@ class Header(Page):
 
     def verify_cart_count(self, expected_count: str):
         self.verify_text(expected_count, *self.CART)
+
+    def hover_rating_sort(self):
+        cart = self.find_element(*self.CART_ICON)
+        actions = ActionChains(self.driver)
+        actions.move_to_element(cart)
+        actions.perform()
 
     def hover_flag_icon(self):
         flag = self.find_element(*self.FLAG)
