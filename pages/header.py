@@ -7,6 +7,7 @@ from selenium.webdriver.support.ui import Select
 class Header(Page):
     SEARCH_FIELD = (By.ID, 'twotabsearchtextbox')
     SEARCH_ICON = (By.ID, 'nav-search-submit-button')
+    SORT_BUTTON_RATING =  (By.XPATH, "//option[@value='rating']")
     # SEARCH_ICON = (By.ID, 'nav-orders')
     # SEARCH_ICON = (By.ID, 'nav-cart')
     CART = (By.ID, 'nav_cart_count')
@@ -14,6 +15,8 @@ class Header(Page):
     FLAG = (By.CSS_SELECTOR, 'icp-nav-flag.icp-nav-flag-us')
     SPANISH_LANG = (By.CSS_SELECTOR, "a[href='#switch-lang=es_US']")
     DEPARTMENT_SELECT = (By.ID, 'searchDropdownBox')
+    PAGES_GETTOP = (By.XPATH, "//a[@href='https://gettop.us/shop/page/2/?orderby=rating']")
+
 
 
     def input_search_word(self, search_word):
@@ -21,6 +24,12 @@ class Header(Page):
 
     def click_search(self):
         self.click(*self.SEARCH_ICON)
+
+    def click_sort(self):
+        self.click(*self.SORT_BUTTON_RATING)
+
+    def click_pages(self):
+        self.click(*self.PAGES_GETTOP)
 
     def verify_cart_count(self, expected_count: str):
         self.verify_text(expected_count, *self.CART)
