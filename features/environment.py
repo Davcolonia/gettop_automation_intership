@@ -1,6 +1,15 @@
 from selenium import webdriver
 from selenium.webdriver.support.wait import WebDriverWait
 from app.application import Application
+from selenium.webdriver.support.events import EventFiringWebDriver
+
+from app.application import Application
+from support.logger import logger, MyListener
+
+# Register for BrowserStack, then grab it from https://www.browserstack.com/accounts/settings
+bs_user = 'davidcolonia_CgYSX3'
+bs_pw = 'NkBCBpCVp4SxXxryWspx'
+
 def browser_init(context):
     """
     :param context: Behave context
@@ -9,8 +18,21 @@ def browser_init(context):
     # context.browser = webdriver.Safari()
     # context.browser = webdriver.Firefox()
 
-    context.driver.maximize_window()
-    context.driver.implicitly_wait(4)
+    # ### HEADLESS MODE ####
+    options = webdriver.ChromeOptions()
+    options.add_argument('--headless')
+    context.driver = webdriver.Chrome(chrome_options=options)
+
+    ### EventFiringWebDriver - log file ###
+    ### for drivers ###
+    context.driver = EventFiringWebDriver(webdriver.Chrome(), MyListener())
+    #for headless mode
+    #context.driver = EventFiringWebDriver(webdriver.Chrome(chrome_options=options), MyListener())
+
+
+
+    # context.driver.maximize_window()
+    # context.driver.implicitly_wait(4)
     context.driver.wait = WebDriverWait(context.driver, 10)
     context.app = Application(context.driver)
 

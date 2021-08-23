@@ -16,6 +16,15 @@ class Header(Page):
     SPANISH_LANG = (By.CSS_SELECTOR, "a[href='#switch-lang=es_US']")
     DEPARTMENT_SELECT = (By.ID, 'searchDropdownBox')
     PAGES_GETTOP = (By.XPATH, "//a[@href='https://gettop.us/shop/page/2/?orderby=rating']")
+    FOOTER_LINK_iPhone = (By.XPATH, "//a[@href='https://gettop.us/product-category/iphone/']")
+    FOOTER_LINK_MAC = (By.XPATH, "//a[@href='https://gettop.us/product-category/macbook/']")
+    FOOTER_LINK_WATCH = (By.XPATH, "//a[@href='https://gettop.us/product-category/accessories/watch/']")
+    FOOTER_LINK_iPad = (By.XPATH, "//a[@href='https://gettop.us/product-category/ipad/']")
+    FOOTER_LINK_ACCESSORY = (By.XPATH, "//a[@href='https://gettop.us/product-category/accessories/airpods/']")
+
+
+
+
 
 
 
@@ -30,6 +39,25 @@ class Header(Page):
 
     def click_pages(self):
         self.click(*self.PAGES_GETTOP)
+
+    def click_footer_phone(self):
+        self.click(*self.FOOTER_LINK_iPhone)
+
+    def click_footer_mac(self):
+        self.click(*self.FOOTER_LINK_MAC)
+
+    def click_footer_watch(self):
+        self.click(*self.FOOTER_LINK_WATCH)
+
+
+    def click_footer_iPad(self):
+        self.click(*self.FOOTER_LINK_iPad)
+
+    def click_footer_accessory(self):
+        self.click(*self.FOOTER_LINK_ACCESSORY)
+
+
+
 
     def verify_cart_count(self, expected_count: str):
         self.verify_text(expected_count, *self.CART)

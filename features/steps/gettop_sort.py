@@ -30,10 +30,10 @@ def verify_url_rating_sort(context, expected_text):
     #actual_result = context.driver.find_element(By.CSS_SELECTOR, "form.woocommerce-ordering option").text
     assert actual_result == expected_text.lower(), f'Expected {expected_text}, but got {actual_result}'
     # context.app.search_results_page.verify_search_worked(expected_text)
-
-@when('User clicks footer link')
-def click_cart(context):
-    context.app.header.click_footer_phone()
+#
+# @when('User clicks footer link')
+# def click_cart(context):
+#     context.app.header.click_footer_phone()
 
 
 @then('url opens with expected product {expected_text}')
